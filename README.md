@@ -2,7 +2,7 @@
 
 Custom crypto utility for Java Virtual Machine
 
-[![jcrypsi CI](https://github.com/telkomdev/jcrypsi/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/telkomdev/jcrypsi/actions/workflows/ci.yml)
+[![JCrypsi CI](https://github.com/telkomdev/jcrypsi/actions/workflows/ci.yml/badge.svg)](https://github.com/telkomdev/jcrypsi/actions/workflows/ci.yml)
 
 ### jcrypsi is compatible with each other with the following libraries
 - NodeJs https://github.com/telkomdev/crypsi
