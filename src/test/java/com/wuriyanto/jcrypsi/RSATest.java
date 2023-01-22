@@ -1,31 +1,23 @@
 package com.wuriyanto.jcrypsi;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-public class RSATest extends TestCase {
-    
-    public RSATest(String testName) {
-        super(testName);
-    }
+public class RSATest {
 
-    public static Test suite() {
-        return new TestSuite( RSATest.class );
-    }
-
+    @Test
     public void testGenerateRSAKeyPairsShouldSucceed() throws Exception {
         RSA rsa = new RSA(RSA.KEY_SIZE_2KB);
 
         rsa.generateKeyPair();
 
-        assertNotNull(rsa.getPrivateKey());
-        assertNotNull(rsa.getPublicKey());
+        Assertions.assertNotNull(rsa.getPrivateKey());
+        Assertions.assertNotNull(rsa.getPublicKey());
 
-        assertNotNull(rsa.exportPKCS8PrivateKeyToBase64());
-        assertNotNull(rsa.exportPKIXPublicKeyToBase64());
+        Assertions.assertNotNull(rsa.exportPKCS8PrivateKeyToBase64());
+        Assertions.assertNotNull(rsa.exportPKIXPublicKeyToBase64());
 
-        assertNotNull(rsa.exportPKCS8PrivateKeyToHexStr());
-        assertNotNull(rsa.exportPKIXPublicKeyToHexStr());
+        Assertions.assertNotNull(rsa.exportPKCS8PrivateKeyToHexStr());
+        Assertions.assertNotNull(rsa.exportPKIXPublicKeyToHexStr());
     }
 }

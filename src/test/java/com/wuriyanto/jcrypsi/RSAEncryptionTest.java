@@ -7,20 +7,12 @@ import java.nio.file.Paths;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-public class RSAEncryptionTest extends TestCase {
-    
-    public RSAEncryptionTest(String testName) {
-        super(testName);
-    }
+public class RSAEncryptionTest {
 
-    public static Test suite() {
-        return new TestSuite( RSAEncryptionTest.class );
-    }
-
+    @Test
     public void testEncryptAndDecryptWithOaepSHA1() {
         Path baseDir = Paths.get("").toAbsolutePath();
         String testdataPath = Paths.get(baseDir.toString(), "src", "test", "java", "com", "wuriyanto", "jcrypsi", "testdata").toString();
@@ -42,9 +34,9 @@ public class RSAEncryptionTest extends TestCase {
 
             byte[] decryptedData = RSAEncryption.decryptWithOAEPSha1(privateKey, encryptedData);
 
-            assertEquals(data, new String(decryptedData));
+            Assertions.assertEquals(data, new String(decryptedData));
         } catch(Exception e) {
-            assertNull(e);
+            Assertions.assertNull(e);
         } finally {
             try {
                 if (privateKeyStream != null)
@@ -53,11 +45,12 @@ public class RSAEncryptionTest extends TestCase {
                 if (publicKeyStream != null)
                     publicKeyStream.close();
             } catch (Exception e) {
-               assertNull(e);
+               Assertions.assertNull(e);
             }
         }
     }
 
+    @Test
     public void testEncryptAndDecryptWithOaepSHA256() {
         Path baseDir = Paths.get("").toAbsolutePath();
         String testdataPath = Paths.get(baseDir.toString(), "src", "test", "java", "com", "wuriyanto", "jcrypsi", "testdata").toString();
@@ -79,9 +72,9 @@ public class RSAEncryptionTest extends TestCase {
 
             byte[] decryptedData = RSAEncryption.decryptWithOAEPSha256(privateKey, encryptedData);
 
-            assertEquals(data, new String(decryptedData));
+            Assertions.assertEquals(data, new String(decryptedData));
         } catch(Exception e) {
-            assertNull(e);
+            Assertions.assertNull(e);
         } finally {
             try {
                 if (privateKeyStream != null)
@@ -90,11 +83,12 @@ public class RSAEncryptionTest extends TestCase {
                 if (publicKeyStream != null)
                     publicKeyStream.close();
             } catch (Exception e) {
-               assertNull(e);
+               Assertions.assertNull(e);
             }
         }
     }
 
+    @Test
     public void testEncryptAndDecryptWithOaepSHA384() {
         Path baseDir = Paths.get("").toAbsolutePath();
         String testdataPath = Paths.get(baseDir.toString(), "src", "test", "java", "com", "wuriyanto", "jcrypsi", "testdata").toString();
@@ -116,9 +110,9 @@ public class RSAEncryptionTest extends TestCase {
 
             byte[] decryptedData = RSAEncryption.decryptWithOAEPSha384(privateKey, encryptedData);
 
-            assertEquals(data, new String(decryptedData));
+            Assertions.assertEquals(data, new String(decryptedData));
         } catch(Exception e) {
-            assertNull(e);
+            Assertions.assertNull(e);
         } finally {
             try {
                 if (privateKeyStream != null)
@@ -127,11 +121,12 @@ public class RSAEncryptionTest extends TestCase {
                 if (publicKeyStream != null)
                     publicKeyStream.close();
             } catch (Exception e) {
-               assertNull(e);
+               Assertions.assertNull(e);
             }
         }
     }
 
+    @Test
     public void testEncryptAndDecryptWithOaepSHA512() {
         Path baseDir = Paths.get("").toAbsolutePath();
         String testdataPath = Paths.get(baseDir.toString(), "src", "test", "java", "com", "wuriyanto", "jcrypsi", "testdata").toString();
@@ -153,9 +148,9 @@ public class RSAEncryptionTest extends TestCase {
 
             byte[] decryptedData = RSAEncryption.decryptWithOAEPSha512(privateKey, encryptedData);
 
-            assertEquals(data, new String(decryptedData));
+            Assertions.assertEquals(data, new String(decryptedData));
         } catch(Exception e) {
-            assertNull(e);
+            Assertions.assertNull(e);
         } finally {
             try {
                 if (privateKeyStream != null)
@@ -164,7 +159,7 @@ public class RSAEncryptionTest extends TestCase {
                 if (publicKeyStream != null)
                     publicKeyStream.close();
             } catch (Exception e) {
-               assertNull(e);
+               Assertions.assertNull(e);
             }
         }
     }

@@ -7,20 +7,12 @@ import java.nio.file.Paths;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-public class RSASignatureTest extends TestCase {
-    
-    public RSASignatureTest(String testName) {
-        super(testName);
-    }
+public class RSASignatureTest {
 
-    public static Test suite() {
-        return new TestSuite( RSASignatureTest.class );
-    }
-
+    @Test
     public void testSignAndVerifyWithPssSHA1() {
         Path baseDir = Paths.get("").toAbsolutePath();
         String testdataPath = Paths.get(baseDir.toString(), "src", "test", "java", "com", "wuriyanto", "jcrypsi", "testdata").toString();
@@ -49,9 +41,9 @@ public class RSASignatureTest extends TestCase {
 
             boolean validSignature = RSASignature.verifySignatureWithPssSha1(publicKey, signature, burgerFileStreamVerify);
 
-            assertTrue(validSignature);
+            Assertions.assertTrue(validSignature);
         } catch(Exception e) {
-            assertNull(e);
+            Assertions.assertNull(e);
         } finally {
             try {
                 if (privateKeyStream != null)
@@ -66,11 +58,12 @@ public class RSASignatureTest extends TestCase {
                 if (burgerFileStreamVerify != null)
                     burgerFileStreamVerify.close();
             } catch (Exception e) {
-               assertNull(e);
+               Assertions.assertNull(e);
             }
         }
     }
 
+    @Test
     public void testSignAndVerifyWithPssSHA256() {
         Path baseDir = Paths.get("").toAbsolutePath();
         String testdataPath = Paths.get(baseDir.toString(), "src", "test", "java", "com", "wuriyanto", "jcrypsi", "testdata").toString();
@@ -99,9 +92,9 @@ public class RSASignatureTest extends TestCase {
 
             boolean validSignature = RSASignature.verifySignatureWithPssSha256(publicKey, signature, burgerFileStreamVerify);
 
-            assertTrue(validSignature);
+            Assertions.assertTrue(validSignature);
         } catch(Exception e) {
-            assertNull(e);
+            Assertions.assertNull(e);
         } finally {
             try {
                 if (privateKeyStream != null)
@@ -116,11 +109,12 @@ public class RSASignatureTest extends TestCase {
                 if (burgerFileStreamVerify != null)
                     burgerFileStreamVerify.close();
             } catch (Exception e) {
-               assertNull(e);
+               Assertions.assertNull(e);
             }
         }
     }
 
+    @Test
     public void testSignAndVerifyWithPssSHA384() {
         Path baseDir = Paths.get("").toAbsolutePath();
         String testdataPath = Paths.get(baseDir.toString(), "src", "test", "java", "com", "wuriyanto", "jcrypsi", "testdata").toString();
@@ -149,10 +143,10 @@ public class RSASignatureTest extends TestCase {
 
             boolean validSignature = RSASignature.verifySignatureWithPssSha384(publicKey, signature, burgerFileStreamVerify);
 
-            assertTrue(validSignature);
+            Assertions.assertTrue(validSignature);
         } catch(Exception e) {
             System.out.println(e.getMessage());
-            assertNull(e);
+            Assertions.assertNull(e);
         } finally {
             try {
                 if (privateKeyStream != null)
@@ -167,11 +161,12 @@ public class RSASignatureTest extends TestCase {
                 if (burgerFileStreamVerify != null)
                     burgerFileStreamVerify.close();
             } catch (Exception e) {
-               assertNull(e);
+               Assertions.assertNull(e);
             }
         }
     }
 
+    @Test
     public void testSignAndVerifyWithPssSHA512() {
         Path baseDir = Paths.get("").toAbsolutePath();
         String testdataPath = Paths.get(baseDir.toString(), "src", "test", "java", "com", "wuriyanto", "jcrypsi", "testdata").toString();
@@ -200,9 +195,9 @@ public class RSASignatureTest extends TestCase {
 
             boolean validSignature = RSASignature.verifySignatureWithPssSha512(publicKey, signature, burgerFileStreamVerify);
 
-            assertTrue(validSignature);
+            Assertions.assertTrue(validSignature);
         } catch(Exception e) {
-            assertNull(e);
+            Assertions.assertNull(e);
         } finally {
             try {
                 if (privateKeyStream != null)
@@ -217,11 +212,12 @@ public class RSASignatureTest extends TestCase {
                 if (burgerFileStreamVerify != null)
                     burgerFileStreamVerify.close();
             } catch (Exception e) {
-               assertNull(e);
+               Assertions.assertNull(e);
             }
         }
     }
 
+    @Test
     public void testSignAndVerifyWithPssSHA512ShouldFailWithInvalidSignature() {
         Path baseDir = Paths.get("").toAbsolutePath();
         String testdataPath = Paths.get(baseDir.toString(), "src", "test", "java", "com", "wuriyanto", "jcrypsi", "testdata").toString();
@@ -250,9 +246,9 @@ public class RSASignatureTest extends TestCase {
 
             boolean validSignature = RSASignature.verifySignatureWithPssSha512(publicKey, signature, burgerFileStreamVerify);
 
-            assertFalse(validSignature);
+            Assertions.assertFalse(validSignature);
         } catch(Exception e) {
-            assertNull(e);
+            Assertions.assertNull(e);
         } finally {
             try {
                 if (privateKeyStream != null)
@@ -267,7 +263,7 @@ public class RSASignatureTest extends TestCase {
                 if (burgerFileStreamVerify != null)
                     burgerFileStreamVerify.close();
             } catch (Exception e) {
-               assertNull(e);
+               Assertions.assertNull(e);
             }
         }
     }

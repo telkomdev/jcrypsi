@@ -1,20 +1,12 @@
 package com.wuriyanto.jcrypsi;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-public class AESTest extends TestCase {
-    
-    public AESTest(String testName) {
-        super(testName);
-    }
+public class AESTest {
 
-    public static Test suite() {
-        return new TestSuite( AESTest.class );
-    }
-
+    @Test
     public void testDummyTestAes() {
-        assertTrue(true);
+        Assertions.assertTrue(true);
     }
 }
