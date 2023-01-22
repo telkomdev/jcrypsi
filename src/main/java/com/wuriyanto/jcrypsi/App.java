@@ -125,7 +125,7 @@ public class App {
         // FileOutputStream fileOutputStream = null;
 
         // try {
-        //     fileInputStream = new FileInputStream(new File("./burger.png"));
+        //     fileInputStream = new FileInputStream(new File(testdataPath+"/burger.png"));
         //     fileOutputStream = new FileOutputStream(new File("./burger.bin"));
 
         //     AES.encryptWithAES256GCM(fileInputStream, fileOutputStream, key256.getBytes());
