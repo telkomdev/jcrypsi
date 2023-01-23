@@ -10,10 +10,6 @@ import java.io.FileOutputStream;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 
-/**
- * Hello world!
- *
- */
 public class App {
     public static void main( String[] args ){
         Path baseDir = Paths.get("").toAbsolutePath();
@@ -43,11 +39,11 @@ public class App {
             System.out.println(rsa.getPrivateKeyFormat());
             System.out.println(rsa.getPublicKeyFormat());
 
-            // privateKeyStreamOut = new FileOutputStream(new File("./private2.key"));
-            // publicKeyStreamOut = new FileOutputStream(new File("./public2.key"));
+            privateKeyStreamOut = new FileOutputStream(new File("./private2.key"));
+            publicKeyStreamOut = new FileOutputStream(new File("./public2.key"));
 
-            // rsa.exportPKCS8PrivateKeyToStream(privateKeyStreamOut);
-            // rsa.exportPKIXPublicKeyToStream(publicKeyStreamOut);
+            rsa.exportPKCS8PrivateKeyToStream(privateKeyStreamOut);
+            rsa.exportPKIXPublicKeyToStream(publicKeyStreamOut);
 
             System.out.println(rsa.exportPKCS8PrivateKeyToBase64());
             System.out.println(rsa.exportPKIXPublicKeyToBase64());
@@ -154,7 +150,7 @@ public class App {
         //     fileInputStream = new FileInputStream(new File("./burger.bin"));
         //     fileOutputStream = new FileOutputStream(new File("./burger_dec.png"));
 
-        //     AES.decryptWithAES256GCM(fileInputStream, fileOutputStream, key256.getBytes());
+        //     AES.decryptWithAES256CBC(fileInputStream, fileOutputStream, key256.getBytes());
         // } catch(Exception e) {
         //     e.printStackTrace();
         // } finally {

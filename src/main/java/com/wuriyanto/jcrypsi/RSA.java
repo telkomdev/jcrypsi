@@ -37,7 +37,7 @@ public final class RSA {
 
         // remove Header
         String keyWithHeader = new String(keyBytes);
-        keyWithHeader = removePrivateKeyHeader(keyWithHeader);
+        keyWithHeader = removePKCS8PrivateKeyHeader(keyWithHeader);
 
         byte[] decoded = Base64.getDecoder().decode(keyWithHeader);
 
@@ -52,7 +52,7 @@ public final class RSA {
 
         // remove Header
         String keyWithHeader = new String(keyBytes);
-        keyWithHeader = removePublicKeyHeader(keyWithHeader);
+        keyWithHeader = removePKIXPublicKeyHeader(keyWithHeader);
 
         byte[] decoded = Base64.getDecoder().decode(keyWithHeader);
 
@@ -61,13 +61,13 @@ public final class RSA {
         return kf.generatePublic(spec);
     }
 
-    public static String removePrivateKeyHeader(String base64Key) {
+    private static String removePKCS8PrivateKeyHeader(String base64Key) {
         base64Key = base64Key.replace("-----BEGIN PRIVATE KEY-----", "").replace("\n", "");
         base64Key = base64Key.replace("-----END PRIVATE KEY-----", "");
         return base64Key;
     }
 
-    public static String removePublicKeyHeader(String base64Key) {
+    private static String removePKIXPublicKeyHeader(String base64Key) {
         base64Key = base64Key.replace("-----BEGIN PUBLIC KEY-----", "").replace("\n", "");
         base64Key = base64Key.replace("-----END PUBLIC KEY-----", "");
         return base64Key;
@@ -85,6 +85,7 @@ public final class RSA {
         return this.keyPair.getPublic();
     }
 
+    // format will be PKCS8 without header
     public String exportPKCS8PrivateKeyToBase64() throws Exception {
         if (this.keyPair == null)
             throw new Exception("key pair is null, call generateKeyPair first");
@@ -92,6 +93,7 @@ public final class RSA {
                 encodeToString(this.keyPair.getPrivate().getEncoded());
     }
 
+    // format will be X.509 or PKIX without header
     public String exportPKIXPublicKeyToBase64() throws Exception {
         if (this.keyPair == null)
             throw new Exception("key pair is null, call generateKeyPair first");
@@ -123,12 +125,12 @@ public final class RSA {
         return this.keyPair.getPublic().getFormat();
     }
 
+    // format will be PKCS8 with header
     public void exportPKCS8PrivateKeyToStream(OutputStream outputStream) throws Exception {
         if (this.keyPair == null)
             throw new Exception("key pair is null, call generateKeyPair first");
 
-        String privateKeyBase64Str = Base64.getEncoder().
-                encodeToString(this.keyPair.getPrivate().getEncoded());
+        String privateKeyBase64Str = exportPKCS8PrivateKeyToBase64();
         byte[] privateKeyBase64Bytes = privateKeyBase64Str.getBytes();
 
         outputStream.write("-----BEGIN PRIVATE KEY-----\n".getBytes());
@@ -140,12 +142,12 @@ public final class RSA {
         outputStream.write("-----END PRIVATE KEY-----".getBytes());
     }
 
+    // format will be X.509 or PKIX with header
     public void exportPKIXPublicKeyToStream(OutputStream outputStream) throws Exception {
         if (this.keyPair == null)
             throw new Exception("key pair is null, call generateKeyPair first");
 
-        String publicKeyBase64Str = Base64.getEncoder().
-                encodeToString(this.keyPair.getPublic().getEncoded());
+        String publicKeyBase64Str = exportPKIXPublicKeyToBase64();
         byte[] publicKeyBase64Bytes = publicKeyBase64Str.getBytes();
 
         outputStream.write("-----BEGIN PUBLIC KEY-----\n".getBytes());
