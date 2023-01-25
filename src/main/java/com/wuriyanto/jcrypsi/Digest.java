@@ -59,7 +59,7 @@ public final class Digest {
         return Commons.hexEncode(digest(messageDigest, data));
     }
 
-    public static byte[] digest(MessageDigest messageDigest, byte[]... datas) {
+    private static byte[] digest(MessageDigest messageDigest, byte[]... datas) {
         for (byte[] data : datas) {
             messageDigest.update(data);
         }
@@ -67,7 +67,7 @@ public final class Digest {
         return messageDigest.digest();
     }
 
-    public static byte[] digest(MessageDigest messageDigest, InputStream data) throws Exception {
+    private static byte[] digest(MessageDigest messageDigest, InputStream data) throws Exception {
         byte[] bytesData = Commons.inputStreamToByteArray(data);
         return digest(messageDigest, bytesData);
     }
