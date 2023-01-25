@@ -39,13 +39,16 @@ tasks.withType(JavaCompile) {
 
 tasks.named('test') {
     useJUnitPlatform() 
+    testLogging {
+        events "started", "passed", "skipped", "failed"
+    }
 }
 
 task fatJar(type: Jar) {
     manifest {
         attributes 'Main-Class': 'com.wuriyanto.jcrypsi.App'
     }
-    baseName = 'app'
+    archiveBaseName = 'app'
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
