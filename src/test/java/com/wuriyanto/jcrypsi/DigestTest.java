@@ -1,5 +1,10 @@
 package com.wuriyanto.jcrypsi;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -21,6 +26,35 @@ public class DigestTest {
         String actual = Digest.md5("In cryptography, a hybrid cryptosystem is one which combines the convenience of a public-key cryptosystem with the efficiency of a symmetric-key cryptosystem.[1] Public-key cryptosystems are convenient in that they do not require".getBytes());
 
         Assertions.assertEquals(expected, actual);     
+    }
+
+    @Test
+    public void testMD5StreamInputShouldEqualToExpected() {
+        Path baseDir = Paths.get("").toAbsolutePath();
+        String testdataPath = Paths.get(baseDir.toString(), "src", "test", "java", "com", "wuriyanto", "jcrypsi", "testdata").toString();
+
+        FileInputStream burgerFileInputStream = null;
+
+        try {
+
+            File burgerFileInput = new File(testdataPath+"/burger.png");
+            burgerFileInputStream = new FileInputStream(burgerFileInput);
+
+            String expected = "d7039a502a1ee55f224801d960f28ae4";
+            String actual = Digest.md5(burgerFileInputStream);
+
+            Assertions.assertEquals(expected, actual);
+        } catch(Exception e) {
+            Assertions.assertNull(e);
+        } finally {
+            try {
+                if (burgerFileInputStream != null)
+                    burgerFileInputStream.close();
+
+            } catch (Exception e) {
+               Assertions.assertNull(e);
+            }
+        }
     }
 
     @Test
@@ -51,6 +85,35 @@ public class DigestTest {
     }
 
     @Test
+    public void testSHA1StreamInputShouldEqualToExpected() {
+        Path baseDir = Paths.get("").toAbsolutePath();
+        String testdataPath = Paths.get(baseDir.toString(), "src", "test", "java", "com", "wuriyanto", "jcrypsi", "testdata").toString();
+
+        FileInputStream burgerFileInputStream = null;
+
+        try {
+
+            File burgerFileInput = new File(testdataPath+"/burger.png");
+            burgerFileInputStream = new FileInputStream(burgerFileInput);
+
+            String expected = "9468ffae2583e86f3e7ef16b935af879e1c7cf83";
+            String actual = Digest.sha1(burgerFileInputStream);
+
+            Assertions.assertEquals(expected, actual);
+        } catch(Exception e) {
+            Assertions.assertNull(e);
+        } finally {
+            try {
+                if (burgerFileInputStream != null)
+                    burgerFileInputStream.close();
+
+            } catch (Exception e) {
+               Assertions.assertNull(e);
+            }
+        }
+    }
+
+    @Test
     public void testSHA1ShouldNotEqualToExpected() throws Exception {
         String expected = "afd2bd72af0c346a2ab14d50746835d3ccd1dd55";
 
@@ -75,6 +138,35 @@ public class DigestTest {
         String actual = Digest.sha256("In cryptography, a hybrid cryptosystem is one which combines the convenience of a public-key cryptosystem with the efficiency of a symmetric-key cryptosystem.[1] Public-key cryptosystems are convenient in that they do not require".getBytes());
 
         Assertions.assertEquals(expected, actual);     
+    }
+
+    @Test
+    public void testSHA256StreamInputShouldEqualToExpected() {
+        Path baseDir = Paths.get("").toAbsolutePath();
+        String testdataPath = Paths.get(baseDir.toString(), "src", "test", "java", "com", "wuriyanto", "jcrypsi", "testdata").toString();
+
+        FileInputStream burgerFileInputStream = null;
+
+        try {
+
+            File burgerFileInput = new File(testdataPath+"/burger.png");
+            burgerFileInputStream = new FileInputStream(burgerFileInput);
+
+            String expected = "47dc80d5910f5250cf0d5166113d91c00b0b5ced9b328db9081ad43738c5869b";
+            String actual = Digest.sha256(burgerFileInputStream);
+
+            Assertions.assertEquals(expected, actual);
+        } catch(Exception e) {
+            Assertions.assertNull(e);
+        } finally {
+            try {
+                if (burgerFileInputStream != null)
+                    burgerFileInputStream.close();
+
+            } catch (Exception e) {
+               Assertions.assertNull(e);
+            }
+        }
     }
 
     @Test
@@ -105,6 +197,35 @@ public class DigestTest {
     }
 
     @Test
+    public void testSHA384StreamInputShouldEqualToExpected() {
+        Path baseDir = Paths.get("").toAbsolutePath();
+        String testdataPath = Paths.get(baseDir.toString(), "src", "test", "java", "com", "wuriyanto", "jcrypsi", "testdata").toString();
+
+        FileInputStream burgerFileInputStream = null;
+
+        try {
+
+            File burgerFileInput = new File(testdataPath+"/burger.png");
+            burgerFileInputStream = new FileInputStream(burgerFileInput);
+
+            String expected = "c421ea0d650a85961e3c8453f291c49310c42f17ae268fc9c4c23b537de17042493eff767807c90f638aecc564fdbce4";
+            String actual = Digest.sha384(burgerFileInputStream);
+
+            Assertions.assertEquals(expected, actual);
+        } catch(Exception e) {
+            Assertions.assertNull(e);
+        } finally {
+            try {
+                if (burgerFileInputStream != null)
+                    burgerFileInputStream.close();
+
+            } catch (Exception e) {
+               Assertions.assertNull(e);
+            }
+        }
+    }
+
+    @Test
     public void testSHA384ShouldNotEqualToExpected() throws Exception {
         String expected = "2bf236501ecea775cd0eac6da0632eb236e514f29c2aff06a42819fe3b1f3d5b8aefe8c1608a8f5a4d832090902f84aa";
 
@@ -129,6 +250,35 @@ public class DigestTest {
         String actual = Digest.sha512("In cryptography, a hybrid cryptosystem is one which combines the convenience of a public-key cryptosystem with the efficiency of a symmetric-key cryptosystem.[1] Public-key cryptosystems are convenient in that they do not require".getBytes());
 
         Assertions.assertEquals(expected, actual);     
+    }
+
+    @Test
+    public void testSHA512StreamInputShouldEqualToExpected() {
+        Path baseDir = Paths.get("").toAbsolutePath();
+        String testdataPath = Paths.get(baseDir.toString(), "src", "test", "java", "com", "wuriyanto", "jcrypsi", "testdata").toString();
+
+        FileInputStream burgerFileInputStream = null;
+
+        try {
+
+            File burgerFileInput = new File(testdataPath+"/burger.png");
+            burgerFileInputStream = new FileInputStream(burgerFileInput);
+
+            String expected = "6519949bc95c5f8bce78e08fffd0a8b0c7fb34514a565a09751ba58aa7be77d288a1fe17704a5b961b02f25e4186a463bd50b7ab86422d1c35fc5fdd1208c4a4";
+            String actual = Digest.sha512(burgerFileInputStream);
+
+            Assertions.assertEquals(expected, actual);
+        } catch(Exception e) {
+            Assertions.assertNull(e);
+        } finally {
+            try {
+                if (burgerFileInputStream != null)
+                    burgerFileInputStream.close();
+
+            } catch (Exception e) {
+               Assertions.assertNull(e);
+            }
+        }
     }
 
     @Test
