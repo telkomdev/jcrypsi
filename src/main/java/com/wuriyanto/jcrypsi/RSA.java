@@ -13,6 +13,8 @@ public final class RSA {
     public static final Integer KEY_SIZE_2KB = 1 << 11; // 2048
     public static final Integer KEY_SIZE_4KB = 1 << 12; // 4096
 
+    private static final byte[] NEW_LINE = new byte[]{0xA};
+
     private int keySize;
     private KeyPair keyPair;
 
@@ -136,7 +138,7 @@ public final class RSA {
         outputStream.write("-----BEGIN PRIVATE KEY-----\n".getBytes());
         for (int i = 0; i < privateKeyBase64Bytes.length; i += 64) {
             outputStream.write(privateKeyBase64Bytes, i, Math.min(64, privateKeyBase64Bytes.length-i));
-            outputStream.write("\n".getBytes());
+            outputStream.write(NEW_LINE);
         }
 
         outputStream.write("-----END PRIVATE KEY-----".getBytes());
@@ -153,7 +155,7 @@ public final class RSA {
         outputStream.write("-----BEGIN PUBLIC KEY-----\n".getBytes());
         for (int i = 0; i < publicKeyBase64Bytes.length; i += 64) {
             outputStream.write(publicKeyBase64Bytes, i, Math.min(64, publicKeyBase64Bytes.length-i));
-            outputStream.write("\n".getBytes());
+            outputStream.write(NEW_LINE);
         }
 
         outputStream.write("-----END PUBLIC KEY-----".getBytes());
